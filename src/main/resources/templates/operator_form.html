@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"><title>Operator Form</title></head>
+<body>
+<div th:replace="fragments :: nav"></div>
+
+<h1 th:text="${operator.id} != null ? 'Edit Operator' : 'Create Operator'"></h1>
+
+<form th:action="${operator.id} != null ? @{'/operators/' + ${operator.id} + '/edit'} : @{'/operators/create'}"
+      th:object="${operator}" method="post">
+    <div><label>Name</label><input th:field="*{name}"/></div>
+    <div><label>Surname</label><input th:field="*{surname}"/></div>
+    <div><label>Department</label><input th:field="*{department}"/></div>
+    <button type="submit">Save</button>
+</form>
+
+<div th:replace="fragments :: footer"></div>
+</body>
+</html>

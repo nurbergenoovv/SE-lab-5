@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"><title>Operators</title></head>
+<body>
+<div th:replace="fragments :: nav"></div>
+
+<h1>Operators</h1>
+<a th:href="@{/operators/create}">Create operator</a>
+<table>
+    <thead><tr><th>ID</th><th>Name</th><th>Surname</th><th>Dept</th><th>Actions</th></tr></thead>
+    <tbody>
+    <tr th:each="o : ${operators}">
+        <td th:text="${o.id}"></td>
+        <td th:text="${o.name}"></td>
+        <td th:text="${o.surname}"></td>
+        <td th:text="${o.department}"></td>
+        <td>
+            <a th:href="@{|/operators/${o.id}/edit|}">Edit</a>
+            <form th:action="@{|/operators/${o.id}/delete|}" method="post" style="display:inline">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div th:replace="fragments :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8" />
+    <title th:fragment="title">Lab</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+</head>
+<body>
+<div th:fragment="nav">
+    <nav class="card" style="padding:12px 16px; margin-bottom:18px; display:flex;align-items:center;gap:12px;justify-content:space-between">
+        <div style="display:flex;gap:12px;align-items:center">
+            <a th:href="@{/courses}" class="btn btn-outline small">Courses</a>
+            <a th:href="@{/operators}" class="btn btn-outline small">Operators</a>
+            <a th:href="@{/requests}" class="btn btn-outline small">Requests</a>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="footer">
+    <hr/>
+</div>
+</body>
+</html>

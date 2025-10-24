@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <title>Course Form</title>
+</head>
+<body>
+<div th:replace="~{fragments :: nav}"></div>
+
+<div class="form-container">
+    <h1 th:text="${course.id} != null ? 'Edit Course' : 'Create Course'"></h1>
+
+    <form th:action="${course.id} != null ? @{'/courses/' + ${course.id} + '/edit'} : @{'/courses/create'}"
+          th:object="${course}" method="post">
+        <div>
+            <label>Name</label>
+            <input type="text" th:field="*{name}" />
+        </div>
+        <div>
+            <label>Description</label>
+            <input type="text" th:field="*{description}" />
+        </div>
+        <div>
+            <label>Price</label>
+            <input type="number" th:field="*{price}" />
+        </div>
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

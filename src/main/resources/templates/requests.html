@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"><title>Requets</title></head>
+<body>
+<div th:replace="fragments :: nav"></div>
+
+<h1>Requests</h1>
+<a th:href="@{/requests/create}">Create request</a>
+<table>
+    <thead><tr><th>ID</th><th>User</th><th>Phone</th><th>Course</th><th>Operators</th><th>Handled</th><th>Actions</th></tr></thead>
+    <tbody>
+    <tr th:each="r : ${requests}">
+        <td th:text="${r.id}"></td>
+        <td th:text="${r.username}"></td>
+        <td th:text="${r.phone}"></td>
+        <td th:text="${r.course != null ? r.course.name : ''}"></td>
+        <td>
+            <span th:each="op : ${r.operators}" th:text="${op.name + ' ' + op.surname} + ' '" />
+        </td>
+        <td th:text="${r.handled}"></td>
+        <td>
+            <a th:href="@{|/requests/${r.id}/assign|}">Assign</a>
+            <form th:action="@{|/requests/${r.id}/delete|}" method="post" style="display:inline">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div th:replace="fragments :: footer"></div>
+</body>
+</html>

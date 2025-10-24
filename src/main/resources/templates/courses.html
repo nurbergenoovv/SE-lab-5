@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <title>Courses</title>
+</head>
+
+<body>
+<div th:replace="fragments :: nav"></div>
+
+<div class="container">
+    <div class="card">
+        <div class="page-header">
+            <h1 class="page-title">Courses</h1>
+            <div class="meta">
+                <a th:href="@{/courses/create}" class="btn btn-primary">Create course</a>
+            </div>
+        </div>
+
+        <div style="margin-top:8px">
+            <div th:if="${#lists.isEmpty(courses)}" class="small kv">No courses found</div>
+
+            <div class="operators" th:if="${!#lists.isEmpty(courses)}">
+                <div th:each="course : ${courses}" class="operator-card">
+                    <div style="display:flex;flex-direction:column">
+                        <div style="font-weight:600" th:text="${course.name}">Course name</div>
+                        <div class="operator-dept" th:text="${course.description}">Description</div>
+                        <div class="small kv">Price: <span th:text="${course.price}">0</span></div>
+                    </div>
+
+                    <div class="operator-id">
+                        <a th:href="@{|/courses/${course.id}/edit|}" class="btn btn-outline small">Edit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments :: footer"></div>
+</body>
+</html>
